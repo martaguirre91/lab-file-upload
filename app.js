@@ -8,8 +8,10 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
-// Set up the database
+var upload = multer({ dest: './public/uploads/avatars' })
+    // Set up the database
 require('./configs/db.config');
 
 // bind user to view - locals
@@ -47,13 +49,13 @@ app.use((req, res, next) => next(createError(404)));
 
 // Catch all error handler
 app.use((error, req, res) => {
-  // Set error information, with stack only available in development
-  res.locals.message = error.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
+    // Set error information, with stack only available in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
 
-  // render the error page
-  res.status(error.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
