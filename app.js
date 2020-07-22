@@ -8,10 +8,8 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-const multer = require('multer');
 
-var upload = multer({ dest: './public/uploads/avatars' })
-    // Set up the database
+// Set up the database
 require('./configs/db.config');
 
 // bind user to view - locals

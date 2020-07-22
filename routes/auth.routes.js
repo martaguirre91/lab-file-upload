@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const routeGuard = require('../configs/route-guard.config');
 
 const multer = require('multer');
-var upload = multer({ dest: '../public/uploads/avatars' })
+const upload = multer({ dest: './public/uploads/avatars/' })
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -22,6 +22,8 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 // .post() route ==> to process form data
 router.post('/signup', upload.single('avatar'), (req, res, next) => {
     const { username, email, password } = req.body;
+    
+    console.log(upload);
 
     const avatar = req.file.filename
 
